@@ -4,15 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+
     <title>Product App</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
     <div id="app">
       <div class="product-image">
         <img v-bind:src="image" />
       </div>
-      <h1>{{ product }}</h1>
+      <div class="product-info">
+        <h1>{{ product }}</h1>
+        <p v-if="inventory > 5">In Stock</p>
+        <p v-else-if="inventory <= 5 && inventory > 0">Almost sold out</p>
+        <p v-else>Out of Stock</p>
+        <p v-show="isShow">Show it !</p>
+        <p v-show="!isShow">Hide it !</p>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="main.js"></script>
