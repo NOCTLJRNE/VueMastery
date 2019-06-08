@@ -20,6 +20,12 @@
         <p v-else>Out of Stock</p>
         <p v-show="isShow">Show it !</p>
         <p v-show="!isShow">Hide it !</p>
+        <ul>
+          <li v-for="_detail in details">{{ _detail }}</li>
+        </ul>
+        <div v-for="_variant in variants">
+          <p>{{ _variant.color }}</p>
+        </div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
