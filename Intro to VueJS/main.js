@@ -3,6 +3,10 @@ Vue.component("product", {
     premium: {
       type: Boolean,
       required: true
+    },
+    cart: {
+      type: Number,
+      required: true
     }
   },
   template: `      <div class="product">
@@ -40,9 +44,7 @@ Vue.component("product", {
     >
       Add to cart
     </button>
-    <div class="cart">
-      <p>Cart({{ cart }})</p>
-    </div>
+    <button v-on:click="removeFromCart" v-bind:disabled="!cart" :class="[cart ? '' : 'disabledButton', 'errorClass']"> Remove from cart</button>
   </div>
 </div>`,
   data() {
@@ -68,16 +70,20 @@ Vue.component("product", {
           image: "./assets/vmSocks-blue-onWhite.jpg",
           quantity: 0
         }
-      ],
-      cart: 0
+      ]
     };
   },
   methods: {
     addToCart: function() {
-      this.cart += 1;
+      //this.cart += 1;
+      this.$emit("add-to-cart-event", this.variants[this.selectedVariant].id);
     },
     updateProduct: function(index) {
       this.selectedVariant = index;
+    },
+    removeFromCart() {
+      console.log("remove");
+      this.$emit("remove-from-cart-event");
     }
   },
   computed: {
@@ -97,7 +103,18 @@ Vue.component("product", {
 });
 var app = new Vue({
   el: "#app",
+
   data: {
-    premium: true
+    premium: true,
+    cart: []
+  },
+  methods: {
+    updateCart: function(id) {
+      this.cart.push(id);
+    },
+    removeCart: function() {
+      var element = this.cart.pop();
+      console.log(`${element} removed`);
+    }
   }
 });
