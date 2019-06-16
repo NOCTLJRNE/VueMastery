@@ -1,10 +1,7 @@
 {
-  "folders": [
-    {
-      "path": "D:\\22-GitHub\\VueMastery"
-    }
-  ],
-  "settings": {
-    "liveServer.settings.port": 5501
-  }
+	"folders": [
+		{
+			"path": "D:\\22-GitHub\\VueMastery"
+		}
+	]
 }
